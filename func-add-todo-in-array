@@ -1,0 +1,58 @@
+import React from 'react'
+import { useState } from 'react';
+
+function App() {
+  // state variable to track the value
+  const[myValue, setMyValue] = useState('');
+  // state to store the value
+  const[todoList, setTodoList] = useState([]);
+
+  // function to track the value
+
+  const handleChange = (e) => {
+    setMyValue(e.target.value);
+  }
+
+  // function to store or append the value in todo list
+
+  const handleAdd = () => {
+    // todoList.concat(myValue) creates a new array by concatenating the elements of the existing list array 
+    // with the new item. The setList function is then used to update the state with the new array.
+    
+    // setTodoList(todoList.concat(myValue));
+    
+    setTodoList([...todoList, myValue]);
+/*
+1. ...list: This spreads the elements of the existing list array. 
+It effectively takes all the elements from list and places them into the new array.
+
+2. item: This is the new element you want to add to the array.
+
+3. [...list, item]: This creates a new array by combining the elements of the existing list array with the new item at the end.
+
+setList([...list, item]): Finally, this updates the state variable list with the newly created array.
+*/ 
+
+    // Both the spread operator and concat method achieve the goal of creating a new array 
+    // with the existing elements and the new item,
+
+  }
+  return (
+    <div>
+      <h1>Todo List For Array in function Component</h1>
+      {/* Input box */}
+      <input type='text' onChange={handleChange}/>
+      <button onClick={handleAdd}>ADD</button>
+      <h2>{myValue}</h2>
+      <ul>
+        {
+          todoList.map((data, id)=>(
+            <li key={data.id}>{data}</li>
+          ))
+        }
+      </ul>
+    </div>
+  )
+}
+
+export default App;
