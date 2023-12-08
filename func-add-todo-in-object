@@ -50,6 +50,8 @@ function App() {
       <input type='text' onChange={handleChange} value={myValue}/>
       <button onClick={handleAdd}>ADD</button>
       <h2>{myValue}</h2>
+{/*
+         mapping Object, this is the to map Object      */}
       <ul>
         {
           Object.entries(todoList).map(([key, value]) =>(
