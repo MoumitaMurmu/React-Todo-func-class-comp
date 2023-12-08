@@ -62,3 +62,62 @@ function App() {
 }
 
 export default App;
+
+
+
+//USING UUID FOR GENERATING UNQUE ID 
+//install the uuid package. npm install uuid
+//IMPORT : import { v4 as uuidv4 } from 'uuid';
+
+
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+const App = () => {
+  const [myValue, setMyValue] = useState('');
+  const [todoList, setTodoList] = useState({});
+
+  const handleAddTodo = () => {
+    setTodoList((prevList) => {
+      const newId = uuidv4();
+      return { ...prevList, [newId]: myValue };
+    });
+    setMyValue('');
+  };
+
+  /*
+  The full form of UUID is "Universally Unique Identifier."
+   A UUID is a 128-bit identifier that is standardized and designed to be unique across time and space. 
+   It is often represented as a 36-character string, typically consisting of hexadecimal digits 
+   separated by hyphens.
+
+There are different versions and variants of UUIDs, 
+and the most common version is known as UUIDv4, which is randomly generated. 
+Other versions may use different methods to generate UUIDs.
+  
+Here is an example of a UUID:
+550e8400-e29b-41d4-a716-446655440000
+
+Each part of the UUID represents specific information, including the version and variant. 
+The uniqueness of UUIDs is achieved by incorporating factors such as the current timestamp,
+ a clock sequence, and a node identifier.
+
+UUIDs are widely used in various contexts, 
+such as database keys, distributed systems, and as unique identifiers for objects in software development.
+  */ 
+
+  return (
+    <div>
+      <input type='text' value={myValue} onChange={(e) => setMyValue(e.target.value)} />
+      <button onClick={handleAddTodo}>Add Todo</button>
+      <ul>
+        {Object.entries(todoList).map(([id, todo]) => (
+          <li key={id}>{id} : {todo}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+
