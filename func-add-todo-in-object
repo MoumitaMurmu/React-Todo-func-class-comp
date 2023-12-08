@@ -31,7 +31,15 @@ function App() {
     */  
 
 
-     // Clear the input field after clicking the button
+// Add the current value to the list object
+     // setTodoList((prevList) => {
+      return { ...prevList, [parseInt(Math.random() * 100000)]: myValue };
+    });
+
+//Math.random() * 100000 generates a random integer number between 0 (inclusive) and 100000 (exclusive). This result is then used as the key in the updated state object.
+     
+
+// Clear the input field after clicking the button
      setMyValue('');
     
   }
