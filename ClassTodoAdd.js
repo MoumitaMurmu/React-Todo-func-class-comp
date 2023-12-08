@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -14,9 +14,14 @@ export class App extends Component {
   }
 
   handleAddObj() {
-    this.setState((prevState) => {
-      return { myObj: { ...prevState.myObj, [Date.now()]: prevState.obj }, obj: '' };
-    });
+    // this.setState((prevState) => {
+      // return { myObj: { ...prevState.myObj, [Date.now()]: prevState.obj }, obj: '' };
+    // });
+
+    const myId = uuidv4();
+   this.setState((prevState)=>{
+    return { myObj : {...prevState.myObj, [myId] : prevState.obj}}
+   })
   }
 
   render() {
