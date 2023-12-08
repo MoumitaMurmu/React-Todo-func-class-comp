@@ -1,0 +1,56 @@
+import React from 'react'
+import { useState } from 'react';
+
+function App() {
+  // state variable to track the value
+  const[myValue, setMyValue] = useState(''); //input value will be string
+  // state to store the value
+  const[todoList, setTodoList] = useState({}); //here we are taking empty object to store our data
+
+  // function to track the value
+
+  const handleChange = (e) => {
+    setMyValue(e.target.value);
+  }
+
+  // function to store or append the value in todo list in object
+
+  const handleAdd = () => {
+     // Add the current value to the list object
+    setTodoList((prevState) => {
+      return {...prevState, [Date.now()] : myValue};
+    });
+
+    /*
+    setList((prevList) => { return { ...prevList, [Date.now()]: myValue }; });: 
+    This line is used when list is an object. It uses the functional form of setState,
+     where the update function receives the previous state (prevList in this case) and returns the new state.
+      Here, it spreads the previous state (...prevList) to retain its existing key-value pairs 
+      and then adds a new key-value pair where the key is the current timestamp (Date.now())
+       and the value is myValue.
+    */  
+
+
+     // Clear the input field after clicking the button
+     setMyValue('');
+    
+  }
+  return (
+    <div>
+      <h1>Todo List For Array in function Component</h1>
+      {/* Input box */}
+      <input type='text' onChange={handleChange} value={myValue}/>
+      <button onClick={handleAdd}>ADD</button>
+      <h2>{myValue}</h2>
+      <ul>
+        {
+          Object.entries(todoList).map(([key, value]) =>(
+            <li key={key}>{key} : {value}</li>
+          ))
+        }
+      </ul>
+    </div>
+  )
+}
+
+export default App;
