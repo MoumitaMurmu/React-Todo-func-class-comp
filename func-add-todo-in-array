@@ -3,9 +3,9 @@ import { useState } from 'react';
 
 function App() {
   // state variable to track the value
-  const[myValue, setMyValue] = useState('');
+  const[myValue, setMyValue] = useState(''); //input value is string
   // state to store the value
-  const[todoList, setTodoList] = useState([]);
+  const[todoList, setTodoList] = useState([]); //storing the value in an Array
 
   // function to track the value
 
@@ -44,6 +44,8 @@ setList([...list, item]): Finally, this updates the state variable list with the
       <input type='text' onChange={handleChange}/>
       <button onClick={handleAdd}>ADD</button>
       <h2>{myValue}</h2>
+     {/*
+         mapping Array, this is the to map array      */}
       <ul>
         {
           todoList.map((data, id)=>(
